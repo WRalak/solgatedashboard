@@ -31,9 +31,22 @@ export default function RootLayout({
          <Navbar/>
         <div className="flex">
           {/* Sidebar visible on medium (md) and larger screens */}
-          <div className=" hidden md:block h-screen w-[320px] border-r bg-gray-50 mt-10">
-            <Sidebar />
-          </div>
+          <div className="h-screen border-r bg-gray-50">
+  {/* Sidebar for larger screens */}
+  <div className="h-screen border-r bg-gray-50">
+  {/* Sidebar for all screens */}
+  <div className="h-full md:w-[309px]  bg-gray-50">
+    <Sidebar />
+  </div>
+</div>
+
+
+  {/* Sidebar for smaller screens */}
+  <div className="block md:hidden fixed inset-0 z-50">
+    <Sidebar />
+  </div>
+</div>
+
           {/* Main content area */}
           
           <div className="flex-1 p-9 mt-24">

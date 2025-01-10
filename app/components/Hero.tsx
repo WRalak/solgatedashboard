@@ -38,55 +38,56 @@ const Dashboard = () => {
 
       {/* Bordered Account Summary Section */}
       <div className="border border-gray-300 rounded p-3 bg-white space-y-4">
-        {/* Account Summary Header */}
-        <div className="flex justify-between items-center flex-wrap ">
-          <h2 className="text-sm font-semibold">Account Summary</h2>
-          <div className="relative">
-  <button
-    className="flex items-center text-xs px-3 py-2 border rounded-md"
-    onClick={() => setDaysDropdown(!daysDropdown)}
-  >
-    {/* Calendar Icon */}
-    <CiCalendar className="text-lg mr-4 text-gray-500" />
-    {/* Button Text */}
-    <span>Last 7 Days</span>
-    {/* Dropdown Icon */}
-    <FiChevronDown className="ml-2 text-gray-500" />
-  </button>
-  {daysDropdown && (
-    <ul className="absolute right-0 mt-2 w-40 bg-white border rounded-xl shadow-md">
-      {["Last 7 Days", "Last 14 Days", "Last 30 Days"].map((day) => (
-        <li
-          key={day}
-          className="px-4 py-2 text-xs hover:bg-gray-100 cursor-pointer"
-          onClick={() => {
-            console.log(day);
-            setDaysDropdown(false);
-          }}
-        >
-          {day}
-        </li>
-      ))}
-    </ul>
-  )}
+  {/* Account Summary Header */}
+  <div className="flex justify-between items-center flex-wrap">
+    <h2 className="text-sm font-semibold">Account Summary</h2>
+    <div className="relative">
+      <button
+        className="flex items-center text-xs px-3 py-2 border rounded-md"
+        onClick={() => setDaysDropdown(!daysDropdown)}
+      >
+        {/* Calendar Icon */}
+        <CiCalendar className="text-lg mr-2 text-gray-500" />
+        {/* Button Text */}
+        <span>Last 7 Days</span>
+        {/* Dropdown Icon */}
+        <FiChevronDown className="ml-2 text-gray-500" />
+      </button>
+      {daysDropdown && (
+        <ul className="absolute right-0 mt-2 w-40 bg-white border rounded-xl shadow-md">
+          {["Last 7 Days", "Last 14 Days", "Last 30 Days"].map((day) => (
+            <li
+              key={day}
+              className="px-4 py-2 text-xs hover:bg-gray-100 cursor-pointer"
+              onClick={() => {
+                console.log(day);
+                setDaysDropdown(false);
+              }}
+            >
+              {day}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </div>
+
+  {/* Stats Section */}
+  <div className="flex flex-wrap gap-4">
+    {stats.map((stat, index) => (
+      <div
+        key={index}
+        className="flex flex-col items-center p-4 text-center space-y-2  flex-1 min-w-[150px]"
+      >
+        <span className="text-sm text-blue-500">{stat.icon}</span>
+        <p className="text-xs text-gray-600">{stat.label}</p>
+        {stat.number && <span className="text-sm font-bold">{stat.number}</span>}
+      </div>
+    ))}
+  </div>
 </div>
 
-        </div>
 
-        {/* Stats Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5  gap-6">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center p-4 text-center space-y-2 "
-            >
-              <span className="text-sm text-blue-500">{stat.icon}</span>
-              <p className="text-xs text-gray-600">{stat.label}</p>
-              {stat.number && <span className="text-sm font-bold">{stat.number}</span>}
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 };

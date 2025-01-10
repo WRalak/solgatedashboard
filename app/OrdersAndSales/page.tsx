@@ -1,10 +1,13 @@
-const Dashboard: React.FC = () => {
-    return (
-      <div>
-        <h1 className="text-2xl font-bold">Orders And Sales </h1>
-        <p>Welcome to the Orders!</p>
-      </div>
-    );
-  };
-  
-  export default Dashboard;
+import Hero from '../components/Hero'
+
+import React from 'react'
+
+const page = () => {
+  return (
+    <div>
+      <Hero/>
+    </div>
+  )
+}
+
+export default page
