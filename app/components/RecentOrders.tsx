@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState } from "react";
 import { FiSearch, FiArrowRight, FiArrowLeft } from "react-icons/fi";
@@ -22,6 +22,7 @@ const RecentOrders = () => {
     { id: "A0B1C035", items: "5", date: "39 mins ago", customer: "Anna Johnson", payment: "Paid", delivery: "Delivered", amount: "1,181.87" },
     { id: "A0B1C045", items: "4", date: "56 mins ago", customer: "Michael Lee", payment: "Unpaid", delivery: "Pending", amount: "18,543.00" },
     // ... other orders
+    // ... (Add more orders as needed)
   ];
 
   const ordersPerPage = 5;
@@ -36,42 +37,42 @@ const RecentOrders = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-50 rounded-md">
-      <div className="flex justify-between items-center mb-4 flex-wrap">
-        <h2 className="text-lg font-semibold text-gray-800 w-full md:w-auto">Recent Orders</h2>
-        <div className="relative w-full md:w-1/3">
+    <div className="border border-gray-200 rounded-md overflow-hidden p-4 md:p-6">
+      {/* Title and Search */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 space-y-3 md:space-y-0">
+        <h2 className="text-sm md:text-xs font-semibold text-gray-800">Recent Orders</h2>
+        <div className="relative w-full md:w-64">
           <input
             type="text"
             placeholder="Search orders..."
-            className="border border-gray-300 rounded-md py-2 pl-8 pr-3 text-sm text-gray-600 focus:outline-none focus:ring-1 focus:ring-orange-400 w-full"
+            className="w-full border border-gray-300 rounded-md py-2 pl-8 pr-3 text-sm text-gray-600 focus:outline-none focus:ring-1 focus:ring-orange-400"
           />
           <FiSearch className="absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-500 text-lg" />
         </div>
       </div>
 
       {/* Orders Table */}
-      <div className="border border-gray-200 rounded-xs overflow-hidden">
-        <div className="flex items-center font-semibold text-xs text-gray-600 bg-gray-100 py-2 px-4 flex-wrap">
-          <span className="flex-1 text-left">Order ID</span>
-          <span className="flex-1 text-left">Items</span>
-          <span className="flex-1 text-left">Date/Time</span>
-          <span className="flex-1 text-left">Customer</span>
-          <span className="flex-1 text-left">Payment</span>
-          <span className="flex-1 text-left">Delivery</span>
-          <span className="flex-1 text-left">Amount</span>
-          <span className="flex-1 text-left">Action</span>
+      <div className="w-full overflow-x-auto">
+        <div className="hidden md:grid grid-cols-8 font-semibold text-xs text-gray-600 py-2 px-4">
+          <span>Order ID</span>
+          <span>Items</span>
+          <span>Date/Time</span>
+          <span>Customer</span>
+          <span>Payment</span>
+          <span>Delivery</span>
+          <span>Amount</span>
+          <span>Action</span>
         </div>
-
         {visibleOrders.map((order) => (
           <div
             key={order.id}
-            className="flex items-center text-xs text-gray-700 border-b py-2 px-4 flex-wrap"
+            className="grid grid-cols-1 md:grid-cols-8 gap-2 items-center text-sm md:text-xs text-gray-700 border-b py-3 px-4"
           >
-            <span className="flex-1 text-left">{order.id}</span>
-            <span className="flex-1 text-left">{order.items}</span>
-            <span className="flex-1 text-left">{order.date}</span>
-            <span className="flex-1 text-left">{order.customer}</span>
-            <span className="flex-1 text-left">
+            <span>{order.id}</span>
+            <span>{order.items}</span>
+            <span>{order.date}</span>
+            <span>{order.customer}</span>
+            <span>
               <button
                 className={`py-1 px-3 rounded-full text-xs ${
                   order.payment === "Paid"
@@ -82,7 +83,7 @@ const RecentOrders = () => {
                 {order.payment}
               </button>
             </span>
-            <span className="flex-1 text-left">
+            <span>
               <button
                 className={`py-1 px-3 rounded-full text-xs ${
                   order.delivery === "Delivered"
@@ -93,10 +94,10 @@ const RecentOrders = () => {
                 {order.delivery}
               </button>
             </span>
-            <span className="flex-1 text-left">{order.amount}</span>
-            <span className="flex-1 text-left">
-            <RiDeleteBinLine   
-                className=" cursor-pointer"
+            <span>{order.amount}</span>
+            <span>
+              <RiDeleteBinLine
+                className="cursor-pointer text-gray-600"
                 onClick={() => handleDelete(order.id)}
               />
             </span>
@@ -105,34 +106,34 @@ const RecentOrders = () => {
       </div>
 
       {/* Pagination & View All */}
-      <div className="flex justify-between items-center mt-4 flex-wrap">
+      <div className="flex flex-col md:flex-row justify-between items-center mt-4 space-y-3 md:space-y-0">
         <span className="text-xs text-gray-600">
           Showing {currentPage * ordersPerPage - ordersPerPage + 1} to{" "}
           {Math.min(currentPage * ordersPerPage, orders.length)} of {orders.length} results
         </span>
-        <div className="flex items-center space-x-4 mt-2 sm:mt-0">
+        <div className="flex items-center space-x-2">
           <button
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            className={`${
-              currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+            className={`p-2 ${
+              currentPage === 1 ? "opacity cursor-not-allowed" : ""
             }`}
           >
             <FiArrowLeft />
           </button>
           <button
             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-            className={`text-orange-500 ${
+            className={`p-2  text-orange-500 ${
               currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >
             <FiArrowRight />
           </button>
-          <button
+          <button 
             onClick={() => setViewAll(!viewAll)}
-            className="py-2 flex px-4 text-xs  text-orange-500"
+            className="text-xs flex  text-orange-500 mr-10"
           >
             {viewAll ? "View Less Orders" : "View All Orders"}
-            <FiArrowRight className="" />
+            <FiArrowRight c />
           </button>
         </div>
       </div>
