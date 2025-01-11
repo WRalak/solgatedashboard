@@ -28,10 +28,10 @@ const Dashboard = () => {
         <h1 className="text-sm text-slate-900 font-bold">Dashboard</h1>
         <div className="flex space-x-4">
           <Link href="/NewSeller">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded text-xs">New Seller</button>
+            <button className="bg-blue-700 text-white px-4 py-2 rounded text-xs">New Seller</button>
           </Link>
           <Link href="/NewProduct">
-            <button className="bg-orange-500 text-white px-4 py-2 rounded text-xs">New Product</button>
+            <button className="bg-customOrange text-white px-4 py-2 rounded text-xs">New Product</button>
           </Link>
         </div>
       </div>
@@ -47,7 +47,7 @@ const Dashboard = () => {
         onClick={() => setDaysDropdown(!daysDropdown)}
       >
         {/* Calendar Icon */}
-        <CiCalendar className="text-lg mr-2 text-gray-500" />
+        <CiCalendar className="text-xs mr-2 text-gray-500" />
         {/* Button Text */}
         <span>Last 7 Days</span>
         {/* Dropdown Icon */}

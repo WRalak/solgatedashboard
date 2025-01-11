@@ -9,17 +9,17 @@ const RecentOrders = () => {
   const [viewAll, setViewAll] = useState(false);
 
   const orders = [
-    { id: "A0B1C003", items: "1", date: "32 mins ago", customer: "John Doe", payment: "Paid", delivery: "Delivered", amount: "52,432.34" },
+    { id: "A0B1C003", items: "1", date: "32 mins ago", customer: "John Doe", payment: " Fully Paid", delivery: "Delivered", amount: "52,432.34" },
     { id: "A0B1C077", items: "3", date: "3 days ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,325.03" },
     { id: "A0B1C072", items: "4", date: "34 mins ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,525.03" },
     { id: "A0B1C074", items: "5", date: "45 mins ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,325.05" },
-    { id: "A0B1C070", items: "2", date: "31 mins ago", customer: "Sam Wilson", payment: "Paid", delivery: "Delivered", amount: "581,325.03" },
-    { id: "A0B1C075", items: "3", date: "5 days ago", customer: "Anna Johnson", payment: "Paid", delivery: "Delivered", amount: "582,325.23" },
+    { id: "A0B1C070", items: "2", date: "31 mins ago", customer: "Sam Wilson", payment: " Fully Paid", delivery: "Delivered", amount: "581,325.03" },
+    { id: "A0B1C075", items: "3", date: "5 days ago", customer: "Anna Johnson", payment: "Fully Paid", delivery: "Delivered", amount: "582,325.23" },
     { id: "A0B1C085", items: "4", date: "11 mins ago", customer: "Michael Lee", payment: "Unpaid", delivery: "Pending", amount: "582,325.04" },
-    { id: "A0B1C025", items: "3", date: "39 mins ago", customer: "Chris Brown", payment: "Paid", delivery: "Delivered", amount: "589,325.03" },
-    { id: "A0B1C055", items: "4", date: "32 mins ago", customer: "Patricia Evans", payment: "Paid", delivery: "Delivered", amount: "592,325.03" },
-    { id: "A0B1C005", items: "5", date: "38 mins ago", customer: "Sam Wilson", payment: "Paid", delivery: "Delivered", amount: "582,325.03" },
-    { id: "A0B1C035", items: "5", date: "39 mins ago", customer: "Anna Johnson", payment: "Paid", delivery: "Delivered", amount: "1,181.87" },
+    { id: "A0B1C025", items: "3", date: "39 mins ago", customer: "Chris Brown", payment: " Fully Paid", delivery: "Delivered", amount: "589,325.03" },
+    { id: "A0B1C055", items: "4", date: "32 mins ago", customer: "Patricia Evans", payment: " Fully Paid", delivery: "Delivered", amount: "592,325.03" },
+    { id: "A0B1C005", items: "5", date: "38 mins ago", customer: "Sam Wilson", payment: " Fully Paid", delivery: "Delivered", amount: "582,325.03" },
+    { id: "A0B1C035", items: "5", date: "39 mins ago", customer: "Anna Johnson", payment: "Fully Paid", delivery: "Delivered", amount: "1,181.87" },
     { id: "A0B1C045", items: "4", date: "56 mins ago", customer: "Michael Lee", payment: "Unpaid", delivery: "Pending", amount: "18,543.00" },
     // ... other orders
     // ... (Add more orders as needed)
@@ -41,13 +41,14 @@ const RecentOrders = () => {
       {/* Title and Search */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 space-y-3 md:space-y-0">
         <h2 className="text-sm md:text-xs font-semibold text-gray-800">Recent Orders</h2>
-        <div className="relative w-full md:w-64">
+        <div className="relative w-32">
           <input
             type="text"
-            placeholder="Search orders..."
-            className="w-full border border-gray-300 rounded-md py-2 pl-8 pr-3 text-sm text-gray-600 focus:outline-none focus:ring-1 focus:ring-orange-400"
+            placeholder="Search"
+            className="w-full border border-gray-300 rounded py-2 pl-8 pr-3 text-xs text-gray-600 focus:outline-none "
           />
-          <FiSearch className="absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-500 text-lg" />
+          <FiSearch className="absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-500 text-[0.75rem]" />
+
         </div>
       </div>
 
@@ -73,15 +74,16 @@ const RecentOrders = () => {
             <span>{order.date}</span>
             <span>{order.customer}</span>
             <span>
-              <button
-                className={`py-1 px-3 rounded-full text-xs ${
-                  order.payment === "Paid"
-                    ? "bg-green-100 text-green-600"
-                    : "bg-red-100 text-red-600"
-                }`}
-              >
-                {order.payment}
-              </button>
+            <button
+    className={`py-1 px-3 rounded-full text-xs ${
+      order.payment.trim() === "Fully Paid"
+        ? "bg-green-100 text-green-600"
+        : "bg-red-100 text-red-600"
+    }`}
+  >
+    {order.payment}
+  </button>
+
             </span>
             <span>
               <button
@@ -133,7 +135,7 @@ const RecentOrders = () => {
             className="text-xs flex  text-orange-500 mr-10"
           >
             {viewAll ? "View Less Orders" : "View All Orders"}
-            <FiArrowRight c />
+            <FiArrowRight  />
           </button>
         </div>
       </div>

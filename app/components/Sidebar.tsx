@@ -51,7 +51,7 @@ const Sidebar: React.FC = () => {
     <div>
       {/* Mobile Menu Button */}
       <button
-        className="lg:hidden fixed top-4 left-4 z-50 text-black p-2 rounded-md"
+        className="lg:hidden fixed top-4 left-4 z-50 text-orange-600 p-2 rounded-md"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
         {isSidebarOpen ? <IoClose size={24} /> : <FiMenu size={24} />}
@@ -70,13 +70,13 @@ const Sidebar: React.FC = () => {
               ref={(el) => (itemRefs.current[item.path] = el)}
               className={`flex items-center space-x-2 p-2 rounded-xs cursor-pointer text-xs ${
                 pathname === item.path
-                  ? "text-orange-500 bg-gray-100"
-                  : "text-gray-500 hover:bg-gray-100"
+                  ? "text-customOrange "
+                  : "text-gray-600 "
               }`}
             >
               <Link href={item.path} className="flex items-center font-medium gap-2">
                 <span className="text-base">{item.icon}</span>
-                <span className="text-xs">{item.name}</span>
+                <span className="text-xs font-bold">{item.name}</span>
               </Link>
             </li>
           ))}

@@ -10,6 +10,7 @@ export default {
   theme: {
   	extend: {
   		colors: {
+			customOrange: 'rgba(234, 88, 12, 1)',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
