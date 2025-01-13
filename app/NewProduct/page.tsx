@@ -1,8 +1,9 @@
 import React from 'react'
+import HeroTwo from '../components/HeroTwo'
 
 const page = () => {
   return (
-    <div> New Product page</div>
+    <div><HeroTwo/></div>
   )
 }
 

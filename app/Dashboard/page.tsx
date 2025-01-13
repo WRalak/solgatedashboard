@@ -1,8 +1,10 @@
+import React from 'react'
+
 import Hero from '../components/Hero'
 import RecentOrders from '../components/RecentOrders'
 
-import React from 'react'
 import BidsAndActivity from '../components/BidsAndActivity'
+import TopSellingProducts from '../components/TopSelling'
 
 const page = () => {
   return (
@@ -10,6 +12,7 @@ const page = () => {
     <Hero/>
     <RecentOrders/>
     <BidsAndActivity/>
+    <TopSellingProducts/>
     </>
   )
 }

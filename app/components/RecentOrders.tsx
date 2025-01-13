@@ -9,23 +9,22 @@ const RecentOrders = () => {
   const [viewAll, setViewAll] = useState(false);
 
   const orders = [
-    { id: "A0B1C003", items: "1", date: "32 mins ago", customer: "John Doe", payment: " Fully Paid", delivery: "Delivered", amount: "52,432.34" },
+    { id: "A0B1C003", items: "1", date: "32 mins ago", customer: "John Doe", payment: "Fully Paid", delivery: "Delivered", amount: "52,432.34" },
     { id: "A0B1C077", items: "3", date: "3 days ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,325.03" },
-    { id: "A0B1C072", items: "4", date: "34 mins ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,525.03" },
-    { id: "A0B1C074", items: "5", date: "45 mins ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,325.05" },
-    { id: "A0B1C070", items: "2", date: "31 mins ago", customer: "Sam Wilson", payment: " Fully Paid", delivery: "Delivered", amount: "581,325.03" },
-    { id: "A0B1C075", items: "3", date: "5 days ago", customer: "Anna Johnson", payment: "Fully Paid", delivery: "Delivered", amount: "582,325.23" },
-    { id: "A0B1C085", items: "4", date: "11 mins ago", customer: "Michael Lee", payment: "Unpaid", delivery: "Pending", amount: "582,325.04" },
-    { id: "A0B1C025", items: "3", date: "39 mins ago", customer: "Chris Brown", payment: " Fully Paid", delivery: "Delivered", amount: "589,325.03" },
-    { id: "A0B1C055", items: "4", date: "32 mins ago", customer: "Patricia Evans", payment: " Fully Paid", delivery: "Delivered", amount: "592,325.03" },
-    { id: "A0B1C005", items: "5", date: "38 mins ago", customer: "Sam Wilson", payment: " Fully Paid", delivery: "Delivered", amount: "582,325.03" },
-    { id: "A0B1C035", items: "5", date: "39 mins ago", customer: "Anna Johnson", payment: "Fully Paid", delivery: "Delivered", amount: "1,181.87" },
-    { id: "A0B1C045", items: "4", date: "56 mins ago", customer: "Michael Lee", payment: "Unpaid", delivery: "Pending", amount: "18,543.00" },
+    { id: "A0B1C003", items: "1", date: "32 mins ago", customer: "John Doe", payment: "Fully Paid", delivery: "Delivered", amount: "52,432.34" },
+    { id: "A0B1C077", items: "3", date: "3 days ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,325.03" },
+    { id: "A0B1C003", items: "1", date: "32 mins ago", customer: "John Doe", payment: "Fully Paid", delivery: "Delivered", amount: "52,432.34" },
+    { id: "A0B1C077", items: "3", date: "3 days ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,325.03" },
+    { id: "A0B1C003", items: "1", date: "32 mins ago", customer: "John Doe", payment: "Fully Paid", delivery: "Delivered", amount: "52,432.34" },
+    { id: "A0B1C077", items: "3", date: "3 days ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,325.03" },
+    { id: "A0B1C003", items: "1", date: "32 mins ago", customer: "John Doe", payment: "Fully Paid", delivery: "Delivered", amount: "52,432.34" },
+    { id: "A0B1C077", items: "3", date: "3 days ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,325.03" },
+    { id: "A0B1C003", items: "1", date: "32 mins ago", customer: "John Doe", payment: "Fully Paid", delivery: "Delivered", amount: "52,432.34" },
+    { id: "A0B1C077", items: "3", date: "3 days ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,325.03" },
     // ... other orders
-    // ... (Add more orders as needed)
   ];
 
-  const ordersPerPage = 5;
+  const ordersPerPage = 4;
   const visibleOrders = viewAll
     ? orders
     : orders.slice((currentPage - 1) * ordersPerPage, currentPage * ordersPerPage);
@@ -37,7 +36,7 @@ const RecentOrders = () => {
   };
 
   return (
-    <div className="border border-gray-200 rounded-md overflow-hidden p-4 md:p-6">
+    <div className="border border-gray-200 rounded-md overflow-hidden p-4 md:p-6 lg:w-[980px] lg:h-[324px] lg:rounded-md ">
       {/* Title and Search */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 space-y-3 md:space-y-0">
         <h2 className="text-sm md:text-xs font-semibold text-gray-800">Recent Orders</h2>
@@ -45,10 +44,9 @@ const RecentOrders = () => {
           <input
             type="text"
             placeholder="Search"
-            className="w-full border border-gray-300 rounded py-2 pl-8 pr-3 text-xs text-gray-600 focus:outline-none "
+            className="w-full border border-gray-300 rounded py-2 pl-8 pr-3 text-xs text-gray-600 focus:outline-none"
           />
           <FiSearch className="absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-500 text-[0.75rem]" />
-
         </div>
       </div>
 
@@ -67,23 +65,22 @@ const RecentOrders = () => {
         {visibleOrders.map((order) => (
           <div
             key={order.id}
-            className="grid grid-cols-1 md:grid-cols-8 gap-2 items-center text-sm md:text-xs text-gray-700 border-b py-3 px-4"
+            className="grid grid-cols-1 md:grid-cols-8 gap-2 items-center text-sm md:text-xs text-gray-700 border-b py-2 px-4"
           >
             <span>{order.id}</span>
             <span>{order.items}</span>
             <span>{order.date}</span>
             <span>{order.customer}</span>
             <span>
-            <button
-    className={`py-1 px-3 rounded-full text-xs ${
-      order.payment.trim() === "Fully Paid"
-        ? "bg-green-100 text-green-600"
-        : "bg-red-100 text-red-600"
-    }`}
-  >
-    {order.payment}
-  </button>
-
+              <button
+                className={`py-1 px-3 rounded-full text-xs ${
+                  order.payment.trim() === "Fully Paid"
+                    ? "bg-green-100 text-green-600"
+                    : "bg-red-100 text-red-600"
+                }`}
+              >
+                {order.payment}
+              </button>
             </span>
             <span>
               <button
@@ -113,31 +110,29 @@ const RecentOrders = () => {
           Showing {currentPage * ordersPerPage - ordersPerPage + 1} to{" "}
           {Math.min(currentPage * ordersPerPage, orders.length)} of {orders.length} results
         </span>
-        <div className="flex items-center space-x-2">
-          <button
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            className={`p-2 ${
-              currentPage === 1 ? "opacity cursor-not-allowed" : ""
-            }`}
-          >
-            <FiArrowLeft />
-          </button>
-          <button
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-            className={`p-2  text-orange-500 ${
-              currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-          >
-            <FiArrowRight />
-          </button>
-          <button 
-            onClick={() => setViewAll(!viewAll)}
-            className="text-xs flex  text-orange-500 mr-10"
-          >
-            {viewAll ? "View Less Orders" : "View All Orders"}
-            <FiArrowRight  />
-          </button>
-        </div>
+        {!viewAll && (
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              className={`p-2 ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""}`}
+            >
+              <FiArrowLeft />
+            </button>
+            <button
+              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+              className={`p-2 text-orange-500 ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""}`}
+            >
+              <FiArrowRight />
+            </button>
+            <button
+              onClick={() => setViewAll(!viewAll)}
+              className="text-xs flex text-orange-500 mr-10"
+            >
+              {viewAll ? "View Less Orders" : "View All Orders"}
+              <FiArrowRight />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

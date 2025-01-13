@@ -35,7 +35,7 @@ export default function RootLayout({
   {/* Sidebar for larger screens */}
   <div className="h-screen border-r bg-gray-50">
   {/* Sidebar for all screens */}
-  <div className="h-full md:w-[309px]  bg-gray-50">
+  <div className="h-full   bg-gray-50">
     <Sidebar />
   </div>
 </div>
@@ -49,7 +49,7 @@ export default function RootLayout({
 
           {/* Main content area */}
           
-          <div className="flex-1 p-9 mt-24">
+          <div className="flex-1 p-4 mt-24">
             {children}
           </div>
         </div>
