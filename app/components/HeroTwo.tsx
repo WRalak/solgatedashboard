@@ -1,11 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-object-type */
- 'use client';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+'use client';
 
 import Image from 'next/image';
 import React, { useState, ChangeEvent } from 'react';
 import { FaPhotoVideo } from 'react-icons/fa';
 import { IoIosInformationCircleOutline } from 'react-icons/io';
+import { FaArrowLeft } from "react-icons/fa";
+import CheckBoxes from './CheckBoxes';
 
 interface UploadSectionProps {}
 
@@ -32,8 +35,21 @@ const UploadSection: React.FC<UploadSectionProps> = () => {
   };
 
   return (
-    <div className="space-y-6">
-        <h1>Dashboard</h1>
+    <div className="space-y-6 ">
+        <div className="flex items-center space-x-4">
+  {/* Left arrow link */}
+  <a href="/Dashboard" className="text-gray-500 ">
+    <span className="text-sm"><FaArrowLeft /></span> {/* Left arrow */}
+  </a>
+
+  {/* Dashboard > New Product */}
+  <h1 className="text-xl font-semibold">
+    <span className="text-gray-800">Dashboard</span>
+    <span className="text-gray-500 text-sm"> &gt; </span> {/* Greater-than symbol */}
+    <span className="text-orange-500">New Product</span>
+  </h1>
+</div>
+
       {/* Top Section */}
       <div
         className="border rounded-[5px] border-gray-300 bg-white p-4"
@@ -100,8 +116,9 @@ const UploadSection: React.FC<UploadSectionProps> = () => {
         className="border border-gray-300 rounded-[5px] bg-white p-6"
         style={{ maxWidth: '580px' }}
       >
-        <p className="font-bold text-sm mb-4">Product Info</p>
-        <div className="grid grid-cols-2 gap-4 mb-6">
+        <p className="font-bold text-sm mb-3">Product Info</p>
+        <hr className="border-t border-gray-300 w-full" />
+        <div className="grid grid-cols-2 gap-4 mt-4 mb-6">
           {/* Product Name */}
           <input
             type="text"
@@ -130,17 +147,22 @@ const UploadSection: React.FC<UploadSectionProps> = () => {
 >
   <div className="grid grid-cols-2 gap-6">
     {/* Selling Price */}
+    
+    
+    
     <div>
-      <label className="block text-sm font-semibold">Selling Price</label>
+    <label className="block text-sm font-semibold">Pricing</label>
+      <hr className="border-t border-gray-300 w-full" />
+      
       <input
         type="text"
-        className="w-full border border-gray-300 text-xs  rounded-[5px] p-2"
+        className="w-full border mt-4 border-gray-300 text-xs rounded-[5px] p-2"
         placeholder="Pricing"
       />
     </div>
-    <div className="flex items-center">
+    <div className="flex mt-4 items-center">
       <input type="checkbox" className="w-4 h-4 text-orange-500" />
-      <label className="ml-2 text-xs text-gray-500">On sale</label>
+      <label className="ml-2 text-xs  text-gray-500">On sale</label>
     </div>
   </div>
   <div className="grid grid-cols-2 gap-6">
@@ -173,30 +195,32 @@ const UploadSection: React.FC<UploadSectionProps> = () => {
       <div className="relative">
         <input
           type="text"
-          className="w-[170px] h-[45px] border border-gray-300 rounded-[5px] pl-2 pr-8"
-          placeholder=""
+          className="w-[170px] h-[45px] text-xs border border-gray-300 rounded-[5px] pl-2 pr-8"
+          placeholder="Cost Of Goods"
         />
         <IoIosInformationCircleOutline className="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-500" />
       </div>
       <div className="relative">
         <input
           type="text"
-          className="w-[170px] h-[45px] border border-gray-300 rounded-[5px] pl-2 pr-8"
-          placeholder=""
+          className="w-[170px] h-[45px] text-xs border border-gray-300 rounded-[5px] pl-2 pr-8"
+          placeholder="Profit"
         />
-        <IoIosInformationCircleOutline className="absolute right-2 top-1/2 transform -translate-y-1/2  text-blue-700" />
+        <IoIosInformationCircleOutline className="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-700" />
       </div>
       <div className="relative">
         <input
           type="text"
-          className="w-[170px] h-[45px] border border-gray-300 rounded-[5px] pl-2 pr-8"
-          placeholder=""
+          className="w-[170px] h-[45px] text-xs border border-gray-300 rounded-[5px] pl-2 pr-8"
+          placeholder="Margin"
         />
         <IoIosInformationCircleOutline className="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-500" />
       </div>
     </div>
   </div>
 </div>
+
+
 
 
 
