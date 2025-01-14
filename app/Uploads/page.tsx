@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { AiOutlinePicture } from "react-icons/ai";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { FaChevronRight } from "react-icons/fa6";
@@ -8,13 +8,15 @@ import Link from 'next/link';
 
 const Page = () => {
   const [activeUpload, setActiveUpload] = useState("single");
-  const fileInputRef = React.useRef(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleUploadClick = () => {
-    fileInputRef.current?.click();
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files.length > 0) {
       console.log('Selected file:', files[0]);
@@ -25,12 +27,10 @@ const Page = () => {
     <div className="space-y-6 px-4 md:px-8">
       {/* Header Section */}
       <div className="flex items-center space-x-4">
-        {/* Left arrow link */}
         <Link href="/Dashboard" className="text-gray-700 hover:text-gray-900">
-          <IoIosArrowRoundBack className="text-lg " />
+          <IoIosArrowRoundBack className="text-lg" />
         </Link>
 
-        {/* Dashboard > New Product */}
         <h1 className="text-lg font-semibold flex mr-10 items-center space-x-2">
           <Link href="/Dashboard">
             <span className="text-gray-900">Dashboard</span>
@@ -43,12 +43,10 @@ const Page = () => {
       </div>
 
       {/* Upload Section */}
-      <section className="w-full max-w-[580px] ">
+      <section className="w-full max-w-[580px]">
         <div className="border border-gray-300 rounded p-4 space-y-4">
-          {/* Header */}
           <div className="flex justify-between">
-          <p className="text-gray-700 text-sm font-semibold">Upload Product</p>
-
+            <p className="text-gray-700 text-sm font-semibold">Upload Product</p>
             <div className="flex space-x-4">
               <p
                 className={`text-xs font-medium cursor-pointer ${
@@ -69,7 +67,7 @@ const Page = () => {
             </div>
           </div>
           <hr className="border-t border-gray-300 w-full" />
-          {/* Dotted Upload Area */}
+
           <div className="border-dotted border-2 border-blue-500 bg-blue-50 h-[100px] flex items-center justify-center rounded">
             <div className="text-center">
               <AiOutlinePicture className="text-xl text-center align-middle text-blue-500 mb-1" />
@@ -85,7 +83,6 @@ const Page = () => {
             </div>
           </div>
 
-          {/* Hidden File Input */}
           <input
             ref={fileInputRef}
             type="file"
@@ -97,10 +94,9 @@ const Page = () => {
       </section>
 
       {/* Store Section */}
-      <section className="w-full max-w-[580px]  border border-gray-300 rounded bg-white p-6 space-y-4">
+      <section className="w-full max-w-[580px] border border-gray-300 rounded bg-white p-6 space-y-4">
         <p className="font-bold text-sm">Store</p>
-        <hr className="border-t border-gray-300  w-full" />
-        {/* Store Name Input */}
+        <hr className="border-t border-gray-300 w-full" />
         <div className="relative">
           <input
             type="text"
@@ -130,7 +126,6 @@ const Page = () => {
           </div>
         </div>
 
-        {/* Checkbox and Buttons */}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <input
