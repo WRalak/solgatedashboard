@@ -4,10 +4,15 @@ import CheckBoxes from '../components/CheckBoxes'
 
 const page = () => {
   return (
-    <div className='flex gap-6 '>
-      <HeroTwo/>
-    <CheckBoxes/>
+    <div className="flex gap-6 lg:w-full">
+    <div className="flex-1">
+      <HeroTwo />
     </div>
+    <div className="flex-1">
+      <CheckBoxes />
+    </div>
+  </div>
+  
   )
 }
 

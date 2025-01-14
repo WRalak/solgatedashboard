@@ -4,6 +4,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link'; // Ensure you import this for Next.js
 import React, { useState, ChangeEvent } from 'react';
 import { FaPhotoVideo } from 'react-icons/fa';
 import { IoIosInformationCircleOutline } from 'react-icons/io';
@@ -38,9 +39,9 @@ const UploadSection: React.FC<UploadSectionProps> = () => {
     <div className="space-y-6 ">
         <div className="flex items-center space-x-4">
   {/* Left arrow link */}
-  <a href="/Dashboard" className="text-gray-500 ">
+  <Link href="/Dashboard" className="text-gray-500 ">
     <span className="text-sm"><FaArrowLeft /></span> {/* Left arrow */}
-  </a>
+  </Link>
 
   {/* Dashboard > New Product */}
   <h1 className="text-xl font-semibold">
@@ -55,17 +56,21 @@ const UploadSection: React.FC<UploadSectionProps> = () => {
         className="border rounded-[5px] border-gray-300 bg-white p-4"
         style={{ maxWidth: '580px' }}
       >
-        <div className="flex items-center justify-between px-4 py-2 border-b">
-          <p className="font-semibold text-sm text-gray-700">Images & Videos</p>
-          <div className="flex space-x-4">
-            <a href="#single-upload" className="text-blue-500 text-xs font-medium">
-              Single Upload
-            </a>
-            <a href="#bulk-upload" className="text-gray-500 text-xs font-medium">
-              Bulk Upload
-            </a>
-          </div>
-        </div>
+       
+
+<div className="flex items-center justify-between px-4 py-2 border-b">
+  <p className="font-semibold text-sm text-gray-700">Images & Videos</p>
+  <div className="flex space-x-4">
+    <Link href="#single-upload">
+      <p className="text-blue-500 text-xs font-medium">Single Upload</p>
+    </Link>
+    <Link href="/Uploads">
+  <p className="text-gray-500 text-xs font-medium">Bulk Upload</p>
+</Link>
+
+  </div>
+</div>
+
         <hr className="border-t border-gray-300 w-full" />
         <div className="grid grid-cols-2 gap-4 pt-4">
           {/* Image Upload */}
