@@ -2,50 +2,37 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-import { FiSearch, FiArrowRight, FiArrowLeft, FiMoreHorizontal } from "react-icons/fi";
+import { FiSearch, FiMoreHorizontal } from "react-icons/fi";
 import { RiCheckDoubleLine, RiEyeLine } from "react-icons/ri";
 
-interface Product {
-  name: string;
-  description: string;
-  sellingPrice: number;
-  bids: number;
-  highestBid: number;
-  image: string;
-}
-
-interface Activity {
-  name: string;
-  price: number;
-  time: string;
-  image: string;
-  type?: string; // Optional field
-}
-
-const PendingBids: React.FC = () => {
+const BidsAndActivity: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [viewAll, setViewAll] = useState<boolean>(false);
   const [showActionMenu, setShowActionMenu] = useState<number | null>(null);
 
-  const products: Product[] = [
+  const products = [
     { name: "Nike Flow 2020 ISPA ISE", description: "High-performance sports shoe", sellingPrice: 1000, bids: 10, highestBid: 1200, image: "/nike.jpg" },
-    { name: "Adidas Ultra Boost 2021", description: "Comfortable running shoe", sellingPrice: 1500, bids: 8, highestBid: 1400, image: "/nike.jpg" },
-    { name: "Puma RS-X3", description: "Stylish sports shoe", sellingPrice: 1300, bids: 15, highestBid: 1250, image: "/converse.jpg" },
+    { name: "Adidas Ultra Boost 2021", description: "Comfortable running shoe", sellingPrice: 1500, bids: 8, highestBid: 1400, image: "/adidas.jpg" },
+    { name: "Puma RS-X3", description: "Stylish sports shoe", sellingPrice: 1300, bids: 15, highestBid: 1250, image: "/puma.jpg" },
   ];
 
-  const recentActivity: Activity[] = [
-    { name: "Nike Flow 2020 ISPA ISE", price: 405.51, time: "10:23 PM", image: "/nike.jpg" },
-    { name: "Adidas Ultra Boost 2021", price: 1200.75, time: "9:15 AM", image: "/nike.jpg" },
+  const recentActivities = [
+    { activity: "Accepted bid for Nike Flow 2020", date: "2025-01-13", time: "14:30", image: "/nike.jpg" },
+    { activity: "Viewed all bids for Adidas Ultra Boost", date: "2025-01-12", time: "10:15", image: "/adidas.jpg" },
+    { activity: "Rejected a bid for Puma RS-X3", date: "2025-01-11", time: "09:45", image: "/puma.jpg" },
   ];
 
   const productsPerPage = 5;
-  const visibleProducts = viewAll ? products : products.slice((currentPage - 1) * productsPerPage, currentPage * productsPerPage);
+  const visibleProducts = viewAll
+    ? products
+    : products.slice((currentPage - 1) * productsPerPage, currentPage * productsPerPage);
   const totalPages = Math.ceil(products.length / productsPerPage);
 
   return (
-    <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-8 px-4 sm:px-6 md:px-8 xl:px- mt-20">
-      {/* Left Section: Pending Bids */}
+    <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-8 px-4 sm:px-6 md:px-8 mt-20">
+      {/* Pending Bids Section */}
       <div className="lg:w-3/4 border border-gray-200 rounded-md p-4 sm:p-6">
+        {/* Header */}
         <div className="flex flex-wrap justify-between items-center mb-4 gap-4">
           <h6 className="text-base font-semibold text-gray-800">Pending Bids ({products.length})</h6>
           <div className="relative w-full sm:w-48">
@@ -58,7 +45,7 @@ const PendingBids: React.FC = () => {
           </div>
         </div>
 
-        {/* Product Table */}
+        {/* Products Table */}
         <div className="overflow-x-auto">
           <div className="grid grid-cols-6 md:grid-cols-7 font-semibold text-xs text-gray-600 py-2 px-4">
             <span className="col-span-2">Product Details</span>
@@ -100,63 +87,25 @@ const PendingBids: React.FC = () => {
             </div>
           ))}
         </div>
-
-        {/* Pagination */}
-        <div className="flex flex-wrap justify-between items-center mt-4 gap-4">
-          <span className="text-xs text-gray-600">
-            Showing {currentPage * productsPerPage - productsPerPage + 1} to{" "}
-            {Math.min(currentPage * productsPerPage, products.length)} of {products.length} results
-          </span>
-          <div className="flex items-center space-x-2">
-            <button
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              className={`p-2 ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""}`}
-            >
-              <FiArrowLeft />
-            </button>
-            <button
-              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-              className={`p-2 text-orange-500 ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""}`}
-            >
-              <FiArrowRight />
-            </button>
-            <button onClick={() => setViewAll(!viewAll)} className="text-xs flex text-orange-500">
-              {viewAll ? "View Less" : "View All"}
-              <FiArrowRight />
-            </button>
-          </div>
-        </div>
       </div>
 
-      {/* Right Section: Recent Activity */}
-      <div className="w-full lg:w-1/4 border border-gray-200 rounded-md p-4">
-        <h6 className="text-lg font-semibold text-gray-800 mb-4">Recent Activity</h6>
-        <div className="flex flex-col space-y-4">
-          {recentActivity.map((activity, index) => (
-            <div key={index} className="flex justify-between items-center">
-              <div className="flex items-center space-x-4">
-                <Image
-                  src={activity.image}
-                  alt={activity.name}
-                  width={48}
-                  height={48}
-                  className="object-cover rounded"
-                />
-                <div className="flex flex-col">
-                  <span className="text-sm font-semibold text-gray-800">{activity.name}</span>
-                  <p className="text-xs text-gray-600">{activity.type || "New Sell"}</p>
-                </div>
+      {/* Recent Activities Section */}
+      <div className="lg:w-1/4 border border-gray-200 rounded-md p-4 sm:p-6">
+        <h6 className="text-base font-semibold text-gray-800 mb-4">Recent Activities</h6>
+        <ul className="space-y-4">
+          {recentActivities.map((activity, index) => (
+            <li key={index} className="flex items-start space-x-4">
+              <Image src={activity.image} alt={activity.activity} width={40} height={40} className="rounded-full" />
+              <div>
+                <p className="text-sm text-gray-700 font-medium">{activity.activity}</p>
+                <p className="text-xs text-gray-500">{`${activity.date}, ${activity.time}`}</p>
               </div>
-              <div className="text-right">
-                <p className="text-sm font-semibold text-gray-800">Ksh {activity.price}</p>
-                <span className="text-xs text-gray-500">{activity.time}</span>
-              </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   );
 };
 
-export default PendingBids;
+export default BidsAndActivity;
