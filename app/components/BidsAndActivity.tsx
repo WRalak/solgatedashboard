@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import Image from "next/image";
@@ -9,6 +10,7 @@ const BidsAndActivity: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [viewAll, setViewAll] = useState<boolean>(false);
   const [showActionMenu, setShowActionMenu] = useState<number | null>(null);
+
 
   const products = [
     { name: "Nike Flow 2020 ISPA ISE", description: "High-performance sports shoe", sellingPrice: 1000, bids: 10, highestBid: 1200, image: "/nike.jpg" },
@@ -69,21 +71,22 @@ const BidsAndActivity: React.FC = () => {
               <span>{product.bids}</span>
               <span>{`Ksh ${product.highestBid}`}</span>
               <span className="relative">
-                <FiMoreHorizontal
-                  className="text-orange-500 cursor-pointer"
-                  onClick={() => setShowActionMenu(showActionMenu === index ? null : index)}
-                />
-                {showActionMenu === index && (
-                  <div className="absolute top-0 left-0 bg-white p-4 z-40 shadow-md rounded-md">
-                    <button className="flex items-center text-xs mb-2">
-                      <RiCheckDoubleLine size={14} className="mr-2 text-orange-700" /> Accept the highest Bid
-                    </button>
-                    <button className="flex items-center text-xs">
-                      <RiEyeLine className="mr-2 text-blue-500" /> View All Bids
-                    </button>
-                  </div>
-                )}
-              </span>
+  <FiMoreHorizontal
+    className="text-orange-500 cursor-pointer"
+    onClick={() => setShowActionMenu(showActionMenu === index ? null : index)}
+  />
+  {showActionMenu === index && (
+    <div className="absolute top-0 left-0 bg-white p-4 z-40 shadow-md rounded-md">
+      <button className="flex items-center text-xs mb-2">
+        <RiCheckDoubleLine size={14} className="mr-2 text-orange-700" /> Accept the highest Bid
+      </button>
+      <button className="flex items-center text-xs">
+        <RiEyeLine className="mr-2 text-blue-500" /> View All Bids
+      </button>
+    </div>
+  )}
+</span>
+
             </div>
           ))}
         </div>
