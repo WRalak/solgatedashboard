@@ -5,21 +5,37 @@ import React, { useState } from "react";
 import { FiSearch, FiArrowRight, FiArrowLeft, FiMoreHorizontal } from "react-icons/fi";
 import { RiCheckDoubleLine, RiEyeLine } from "react-icons/ri";
 
-const PendingBids = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [viewAll, setViewAll] = useState(false);
-  const [showActionMenu, setShowActionMenu] = useState(null);
+interface Product {
+  name: string;
+  description: string;
+  sellingPrice: number;
+  bids: number;
+  highestBid: number;
+  image: string;
+}
 
-  const products = [
+interface Activity {
+  name: string;
+  price: number;
+  time: string;
+  image: string;
+  type?: string; // Optional field
+}
+
+const PendingBids: React.FC = () => {
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [viewAll, setViewAll] = useState<boolean>(false);
+  const [showActionMenu, setShowActionMenu] = useState<number | null>(null);
+
+  const products: Product[] = [
     { name: "Nike Flow 2020 ISPA ISE", description: "High-performance sports shoe", sellingPrice: 1000, bids: 10, highestBid: 1200, image: "/nike.jpg" },
     { name: "Adidas Ultra Boost 2021", description: "Comfortable running shoe", sellingPrice: 1500, bids: 8, highestBid: 1400, image: "/nike.jpg" },
     { name: "Puma RS-X3", description: "Stylish sports shoe", sellingPrice: 1300, bids: 15, highestBid: 1250, image: "/converse.jpg" },
-    // More products...
   ];
-  const recentActivity = [
+
+  const recentActivity: Activity[] = [
     { name: "Nike Flow 2020 ISPA ISE", price: 405.51, time: "10:23 PM", image: "/nike.jpg" },
     { name: "Adidas Ultra Boost 2021", price: 1200.75, time: "9:15 AM", image: "/nike.jpg" },
-    // Add more activity data as needed...
   ];
 
   const productsPerPage = 5;
@@ -56,7 +72,6 @@ const PendingBids = () => {
               key={index}
               className="grid grid-cols-6 md:grid-cols-7 gap-2 items-center text-sm text-gray-700 border-b py-3 px-4"
             >
-              {/* Product Name and Image */}
               <div className="col-span-2 flex items-start space-x-4">
                 <Image src={product.image} alt={product.name} width={48} height={48} className="object-cover rounded" />
                 <div>
