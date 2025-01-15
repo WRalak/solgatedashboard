@@ -5,18 +5,36 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { FiSearch, FiMoreHorizontal } from "react-icons/fi";
 
+// Define TypeScript types for the product and activity data
+interface Product {
+  name: string;
+  description: string;
+  sellingPrice: number;
+  bids: number;
+  highestBid: number;
+  image: string;
+}
+
+interface Activity {
+  activity: string;
+  date: string;
+  time: string;
+  image: string;
+}
+
 const BidsAndActivity: React.FC = () => {
   const [currentPage] = useState<number>(1);
   const [viewAll] = useState<boolean>(false);
   const [showActionMenu, setShowActionMenu] = useState<number | null>(null);
 
-  const products = [
+  // Sample products and activities with appropriate types
+  const products: Product[] = [
     { name: "Nike Flow 2020 ISPA ISE", description: "High-performance sports shoe", sellingPrice: 1000, bids: 10, highestBid: 1200, image: "/nike.jpg" },
     { name: "Adidas Ultra Boost 2021", description: "Comfortable running shoe", sellingPrice: 1500, bids: 8, highestBid: 1400, image: "/adidas.jpg" },
     { name: "Puma RS-X3", description: "Stylish sports shoe", sellingPrice: 1300, bids: 15, highestBid: 1250, image: "/puma.jpg" },
   ];
 
-  const recentActivities = [
+  const recentActivities: Activity[] = [
     { activity: "Accepted bid for Nike Flow 2020", date: "2025-01-13", time: "14:30", image: "/nike.jpg" },
     { activity: "Viewed all bids for Adidas Ultra Boost", date: "2025-01-12", time: "10:15", image: "/adidas.jpg" },
     { activity: "Rejected a bid for Puma RS-X3", date: "2025-01-11", time: "09:45", image: "/puma.jpg" },
