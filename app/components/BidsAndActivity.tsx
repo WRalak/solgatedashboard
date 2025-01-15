@@ -12,6 +12,7 @@ const BidsAndActivity: React.FC = () => {
   const [showActionMenu, setShowActionMenu] = useState<number | null>(null);
 
 
+
   const products = [
     { name: "Nike Flow 2020 ISPA ISE", description: "High-performance sports shoe", sellingPrice: 1000, bids: 10, highestBid: 1200, image: "/nike.jpg" },
     { name: "Adidas Ultra Boost 2021", description: "Comfortable running shoe", sellingPrice: 1500, bids: 8, highestBid: 1400, image: "/adidas.jpg" },
@@ -24,7 +25,7 @@ const BidsAndActivity: React.FC = () => {
     { activity: "Rejected a bid for Puma RS-X3", date: "2025-01-11", time: "09:45", image: "/puma.jpg" },
   ];
 
-  const productsPerPage = 5;
+  const productsPerPage = 4;
   const visibleProducts = viewAll
     ? products
     : products.slice((currentPage - 1) * productsPerPage, currentPage * productsPerPage);
@@ -71,20 +72,12 @@ const BidsAndActivity: React.FC = () => {
               <span>{product.bids}</span>
               <span>{`Ksh ${product.highestBid}`}</span>
               <span className="relative">
-  <FiMoreHorizontal
-    className="text-orange-500 cursor-pointer"
-    onClick={() => setShowActionMenu(showActionMenu === index ? null : index)}
-  />
-  {showActionMenu === index && (
-    <div className="absolute top-0 left-0 bg-white p-4 z-40 shadow-md rounded-md">
-      <button className="flex items-center text-xs mb-2">
-        <RiCheckDoubleLine size={14} className="mr-2 text-orange-700" /> Accept the highest Bid
-      </button>
-      <button className="flex items-center text-xs">
-        <RiEyeLine className="mr-2 text-blue-500" /> View All Bids
-      </button>
-    </div>
-  )}
+              <FiMoreHorizontal
+  className="text-orange-500 cursor-pointer"
+  onClick={() => setShowActionMenu(showActionMenu === index ? null : index)}
+/>
+
+  
 </span>
 
             </div>
