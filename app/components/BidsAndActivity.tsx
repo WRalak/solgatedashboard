@@ -13,6 +13,7 @@ const BidsAndActivity: React.FC = () => {
 
 
 
+
   const products = [
     { name: "Nike Flow 2020 ISPA ISE", description: "High-performance sports shoe", sellingPrice: 1000, bids: 10, highestBid: 1200, image: "/nike.jpg" },
     { name: "Adidas Ultra Boost 2021", description: "Comfortable running shoe", sellingPrice: 1500, bids: 8, highestBid: 1400, image: "/adidas.jpg" },
@@ -73,9 +74,11 @@ const BidsAndActivity: React.FC = () => {
               <span>{`Ksh ${product.highestBid}`}</span>
               <span className="relative">
               <FiMoreHorizontal
+           
   className="text-orange-500 cursor-pointer"
   onClick={() => setShowActionMenu(showActionMenu === index ? null : index)}
 />
+
 
   
 </span>
