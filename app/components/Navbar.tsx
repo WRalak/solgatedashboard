@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 w-full bg-white text-black z-50 shadow-md">
       {/* Navbar Content */}
-      <div className="flex items-center justify-between px-12 md:px-20 py-6">
+      <div className="flex items-center justify-between px-12 md:px-20 py-6 lg:px-20">
         {/* Logo Section */}
         <div className="flex items-center">
           <Image

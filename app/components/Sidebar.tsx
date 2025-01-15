@@ -24,9 +24,8 @@ const Sidebar: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
-    const activeElement = itemRefs.current[pathname];
-    if (activeElement) {
-      activeElement.scrollIntoView({
+    if (pathname && itemRefs.current[pathname]) {
+      itemRefs.current[pathname]?.scrollIntoView({
         behavior: "smooth",
         block: "nearest",
       });
