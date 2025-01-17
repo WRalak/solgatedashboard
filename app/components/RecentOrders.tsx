@@ -19,8 +19,19 @@ const RecentOrders: React.FC = () => {
   const [viewAll, setViewAll] = useState<boolean>(false);
 
   const orders: Order[] = [
+    { id: "A0B1C005", items: "1", date: "32 mins ago", customer: "John Doe", payment: "Fully Paid", delivery: "Delivered", amount: "52,432.34" },
+    { id: "A0B1C070", items: "3", date: "3 days ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,325.03" },
+    { id: "A0B1C009", items: "1", date: "32 mins ago", customer: "John Doe", payment: "Fully Paid", delivery: "Delivered", amount: "52,432.34" },
+    { id: "A0B1C073", items: "3", date: "3 days ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,325.03" },
+    { id: "A0B1C008", items: "1", date: "32 mins ago", customer: "John Doe", payment: "Fully Paid", delivery: "Delivered", amount: "52,432.34" },
+    { id: "A0B1C079", items: "3", date: "3 days ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,325.03" },
+    { id: "A0B1C001", items: "1", date: "32 mins ago", customer: "John Doe", payment: "Fully Paid", delivery: "Delivered", amount: "52,432.34" },
+    { id: "A0B1C072", items: "3", date: "3 days ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,325.03" },
     { id: "A0B1C003", items: "1", date: "32 mins ago", customer: "John Doe", payment: "Fully Paid", delivery: "Delivered", amount: "52,432.34" },
     { id: "A0B1C077", items: "3", date: "3 days ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,325.03" },
+    { id: "A0B1C002", items: "1", date: "32 mins ago", customer: "John Doe", payment: "Fully Paid", delivery: "Delivered", amount: "52,432.34" },
+    { id: "A0B1C076", items: "3", date: "3 days ago", customer: "Jane Smith", payment: "Unpaid", delivery: "Pending", amount: "582,325.03" },
+
     // Add more orders as needed
   ];
 
@@ -53,6 +64,7 @@ const RecentOrders: React.FC = () => {
           <FiSearch className="absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-500 text-base" />
         </div>
       </div>
+    
 
       {/* Orders Table */}
       <div

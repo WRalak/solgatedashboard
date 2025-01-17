@@ -42,14 +42,14 @@ export default function RootLayout({
 
 
   {/* Sidebar for smaller screens */}
-  <div className="block md:hidden fixed inset-0 z-50">
+  <div className="block md:hidden fixed  inset-0 z-50">
     <Sidebar />
   </div>
 </div>
 
           {/* Main content area */}
           
-          <div className="flex-1 p-4 mt-28 items-start">
+          <div className="flex-1  mt-28 items-start">
             {children}
           </div>
         </div>

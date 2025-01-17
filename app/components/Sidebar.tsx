@@ -62,7 +62,7 @@ const Sidebar: React.FC = () => {
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 lg:static lg:w-[309px] z-40`} /* Set width to 309px */
       >
-        <ul className="flex flex-col space-y-1 pt-24 px-6 lg:px-10 font-normal">
+        <ul className="flex flex-col space-y-1 pt-24 px-8 lg:px-10 font-normal">
           {sidebarItems.map((item) => (
             <li
               key={item.name}
@@ -73,7 +73,7 @@ const Sidebar: React.FC = () => {
                   : "text-gray-600 "
               }`}
             >
-              <Link href={item.path} className="flex items-center font-medium gap-2">
+              <Link href={item.path} className="flex px-8 items-center font-medium gap-2">
                 <span className="text-base">{item.icon}</span>
                 <span className="text-xs font-bold">{item.name}</span>
               </Link>
