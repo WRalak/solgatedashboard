@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import React, { useState } from "react";
 import { IoStatsChartOutline } from "react-icons/io5";
@@ -9,6 +9,7 @@ import { FiChevronDown } from "react-icons/fi";
 import { CiCalendar } from "react-icons/ci";
 import Link from "next/link";
 import Products from "../components/Products";
+import Drafts from "../components/Drafts";
 
 const Dashboard = () => {
   const [daysDropdown, setDaysDropdown] = useState(false);
@@ -24,9 +25,9 @@ const Dashboard = () => {
   return (
     <div className="p-4 space-y-6">
       {/* Header Section */}
-      <div className="flex justify-between items-center flex-wrap gap-4">
+      <div className="flex justify-between items-center flex-wrap gap-4 max-w-[980px] mx-auto">
         <h1 className="text-sm font-bold text-slate-900">Products</h1>
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 mt-2 sm:mt-0">
           <Link href="/NewSeller">
             <button className="bg-blue-700 text-white px-4 py-2 rounded text-xs">
               New Seller
@@ -44,7 +45,7 @@ const Dashboard = () => {
       <div className="border border-gray-300 rounded-lg p-4 bg-white space-y-4 w-full">
         {/* Account Summary Header */}
         <div className="flex justify-between items-center flex-wrap">
-          <h2 className="text-md font-semibold">Account Summary</h2>
+          <h2 className="text-md font-bold">Account Summary</h2>
           <div className="relative">
             <button
               className="flex items-center text-sm px-3 py-2 border rounded-md"
@@ -88,6 +89,7 @@ const Dashboard = () => {
         </div>
       </div>
       <Products/>
+      <Drafts/>
     </div>
   );
 };
