@@ -8,6 +8,7 @@ import { GrGroup } from "react-icons/gr";
 import { FiChevronDown } from "react-icons/fi";
 import { CiCalendar } from "react-icons/ci";
 import Link from "next/link";
+import PickUp from "../components/PickUp";
 
 const Dashboard = () => {
   const [daysDropdown, setDaysDropdown] = useState(false);
@@ -86,6 +87,7 @@ const Dashboard = () => {
           ))}
         </div>
       </div>
+      <PickUp/>
     </div>
   );
 };
