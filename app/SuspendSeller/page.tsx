@@ -1,15 +1,17 @@
 'use client';
 
 import React, { useState } from "react";
-import '../components/CategorySection'
+import '../components/Drafts'
 import { IoStatsChartOutline } from "react-icons/io5";
 import { LuShirt } from "react-icons/lu";
 import { RiMoneyDollarBoxLine, RiStoreLine } from "react-icons/ri";
 import { GrGroup } from "react-icons/gr";
 import { FiChevronDown } from "react-icons/fi";
+import { RiArrowLeftLine } from "react-icons/ri";
 import { CiCalendar } from "react-icons/ci";
+import { RiArrowRightSLine } from "react-icons/ri";
 import Link from "next/link";
-import CategorySection from "../components/CategorySection";
+import Drafts from "../components/Drafts";
 
 const Dashboard = () => {
   const [daysDropdown, setDaysDropdown] = useState(false);
@@ -26,20 +28,28 @@ const Dashboard = () => {
     <div className="p-5 space-y-6 w-full lg:w-[980px] lg:ml-[-10px] mx-auto">
       {/* Header Section */}
       <div className="flex justify-between items-center flex-wrap gap-4">
-        <h1 className="text-sm font-bold text-slate-900">Categories</h1>
+      <Link href="/ShopSellers" className="flex items-center gap-2">
+  <RiArrowLeftLine className="text-lg text-slate-900" />
+  <h1 className="text-sm font-bold text-slate-900">Shop/Sellers</h1>
+  <RiArrowRightSLine className="text-lg text-slate-900" />
+  <p className="text-sm text-gray-600">Wallace Ralak</p>
+</Link>
+
+        
         <div className="flex space-x-4">
-          <Link href="/NewSeller">
-            <button className="bg-blue-700 text-white px-4 py-2 rounded text-xs">
-              New Seller
-            </button>
-          </Link>
+          
           <Link href="/NewProduct">
             <button className="bg-customOrange text-white px-4 py-2 rounded text-xs">
-              New Product
+              Suspend Seller
             </button>
           </Link>
         </div>
       </div>
+      <div className="bg-orange-600 h-[250px] max-w-[980px] w-full flex items-center justify-center px-4 mx-auto ml-330">
+      <h1 className="text-white font-extrabold text-6xl leading-none text-center">
+        Vans & Chucktaylors
+      </h1>
+    </div>
 
       {/* Account Summary Section */}
       <div className="border border-gray-300 rounded-lg p-4 bg-white space-y-4 w-">
@@ -88,10 +98,12 @@ const Dashboard = () => {
           ))}
         </div>
       </div>
-      <CategorySection/>
+      <Drafts/>
     </div>
   );
 };
 
 export default Dashboard;
 
+  
+  
