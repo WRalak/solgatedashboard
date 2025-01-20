@@ -1,18 +1,14 @@
-'use client'
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { FiMoreHorizontal } from "react-icons/fi";
-
-
-import { RiArrowRightLine } from "react-icons/ri";
-import { RiArrowLeftLine } from "react-icons/ri";
-import { RiCheckDoubleFill } from "react-icons/ri";
+import { RiArrowRightLine, RiArrowLeftLine, RiCheckDoubleFill, RiDeleteBin5Line } from "react-icons/ri";
 import { FaRegFileAlt } from "react-icons/fa";
-import { RiDeleteBin5Line } from "react-icons/ri";
 
 interface TableRow {
   shop: string;
   phone: string;
-  status: "Complete" | "Pending";
+  status: "Complete" | "Pending" |"Cancelled";
   date: string;
   completedBy: string;
 }
@@ -20,11 +16,10 @@ interface TableRow {
 const PickupRequests: React.FC = () => {
   const [data, setData] = useState<TableRow[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [openMenu, setOpenMenu] = useState<number | null>(null); // Track which row's menu is open
+  const [openMenu, setOpenMenu] = useState<number | null>(null);
   const rowsPerPage = 10;
 
   useEffect(() => {
-    // Generate 142 rows of mock data
     const fetchData = () => {
       const rows: TableRow[] = Array.from({ length: 142 }, (_, index) => ({
         shop: `Shop ${index + 1}`,
@@ -38,7 +33,6 @@ const PickupRequests: React.FC = () => {
     setData(fetchData());
   }, []);
 
-  // Pagination calculations
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
   const currentRows = data.slice(indexOfFirstRow, indexOfLastRow);
@@ -46,29 +40,27 @@ const PickupRequests: React.FC = () => {
   const totalPages = Math.ceil(data.length / rowsPerPage);
 
   const toggleMenu = (index: number) => {
-    setOpenMenu(openMenu === index ? null : index); // Toggle the menu for the specific row
+    setOpenMenu(openMenu === index ? null : index);
   };
 
   return (
-    <div className="p-4 space-y-4">
-      {/* Header Section */}
-      <div className="flex justify-between items-center">
+    <div className="p-4 space-y-4 ">
+      {/* Header */}
+      <div className="flex justify-between items-center mt-10">
         <h1 className="text-sm font-bold">Pick-Up Requests</h1>
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="border border-gray-300 rounded-md px-4 py-2"
-          />
-        </div>
+        <input
+          type="text"
+          placeholder="Search..."
+          className="border border-gray-300 text-xs rounded-md px-4 py-2 w-full sm:w-auto"
+        />
       </div>
       <hr className="border-t border-gray-200" />
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-200">
+        <table className="min-w-full bg-white border border-gray-200 text-xs">
           <thead>
-            <tr className="text-xs">
+            <tr>
               <th className="px-4 py-2 text-left">Shop/Seller</th>
               <th className="px-4 py-2 text-left">Phone</th>
               <th className="px-4 py-2 text-center">Pick-Up Status</th>
@@ -79,57 +71,51 @@ const PickupRequests: React.FC = () => {
           </thead>
           <tbody>
             {currentRows.map((row, index) => (
-              <tr key={index} className="border-t border-gray-200 text-xs">
+              <tr key={index} className="border-t border-gray-200">
                 <td className="px-4 py-2">{row.shop}</td>
                 <td className="px-4 py-2">{row.phone}</td>
                 <td className="px-4 py-2 text-center">
-                  <button
+                  <span
                     className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      row.status === "Complete"
+                      row.status === "Complete" 
                         ? "bg-green-100 text-green-600"
                         : "bg-red-100 text-red-600"
                     }`}
                   >
                     {row.status}
-                  </button>
+                  </span>
                 </td>
                 <td className="px-4 py-2">{row.date}</td>
                 <td className="px-4 py-2">{row.completedBy}</td>
-                <td className="px-4 py-2 text-center">
-                  <div className="relative">
-                    <button
-                      className="text-red-500 hover:text-gray-700"
-                      onClick={() => toggleMenu(index)} // Toggle the menu for the specific row
-                    >
-                      <FiMoreHorizontal size={20} />
-                    </button>
-                    {/* Show menu only if it's the selected row */}
-                    {openMenu === index && (
-                      <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-10">
-                        <button
-                          className="flex items-center w-full px-4 py-2 text-left text-xs text-gray-700 "
-                          onClick={() => alert("Pick-Up Completed")}
-                        >
-                          <RiCheckDoubleFill className="mr-2 text-red-500" />
-                          Pick-Up Completed
-                        </button>
-                        <button
-                          className="flex items-center w-full px-4 py-2 text-left text-xs text-gray-700"
-                          onClick={() => alert("View Pick-Up Date")}
-                        >
-                          <FaRegFileAlt className="mr-2 text-blue-500" />
-                          View Pick-Up Date
-                        </button>
-                        <button
-                          className="flex items-center w-full px-4 py-2 text-left text-xs text-gray-700 "
-                          onClick={() => alert("Cancel Pick-Up")}
-                        >
-                          <RiDeleteBin5Line className="mr-2  text-red-500" />
-                          Cancel Pick-Up
-                        </button>
-                      </div>
-                    )}
-                  </div>
+                <td className="px-4 py-2 text-center relative">
+                  <button onClick={() => toggleMenu(index)} className="text-red-600 ">
+                    <FiMoreHorizontal size={20} />
+                  </button>
+                  {openMenu === index && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-10">
+                      <button
+                        className="flex items-center w-full px-4 py-2 text-left text-xs text-gray-700 "
+                        onClick={() => alert("Pick-Up Completed")}
+                      >
+                        <RiCheckDoubleFill className="mr-2 text-green-500" />
+                        Pick-Up Completed
+                      </button>
+                      <button
+                        className="flex items-center w-full px-4 py-2 text-left text-xs text-gray-700 "
+                        onClick={() => alert("View Pick-Up Date")}
+                      >
+                        <FaRegFileAlt className="mr-2 text-blue-500" />
+                        View Pick-Up Date
+                      </button>
+                      <button
+                        className="flex items-center w-full px-4 py-2 text-left text-xs text-gray-700 "
+                        onClick={() => alert("Cancel Pick-Up")}
+                      >
+                        <RiDeleteBin5Line className="mr-2 text-red-500" />
+                        Cancel Pick-Up
+                      </button>
+                    </div>
+                  )}
                 </td>
               </tr>
             ))}
@@ -137,25 +123,22 @@ const PickupRequests: React.FC = () => {
         </table>
       </div>
 
-      {/* Footer Section */}
-      <div className="flex justify-between items-center mt-4">
-        <p className="text-xs text-gray-600">
-          Showing {indexOfFirstRow + 1} to{" "}
-          {Math.min(indexOfLastRow, data.length)} of {data.length} rows
+      {/* Footer */}
+      <div className="flex justify-between items-center mt-4 text-xs">
+        <p>
+          Showing {indexOfFirstRow + 1} to {Math.min(indexOfLastRow, data.length)} of {data.length} rows
         </p>
         <div className="flex space-x-2">
           <button
-            className="text-xs "
+            className={`text-gray-500 ${currentPage === 1 && "opacity-50"}`}
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
           >
             <RiArrowLeftLine />
           </button>
           <button
-            className=" text-orange-600 "
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-            }
+            className={`text-orange-500 ${currentPage === totalPages && "opacity-50"}`}
+            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
             disabled={currentPage === totalPages}
           >
             <RiArrowRightLine />
