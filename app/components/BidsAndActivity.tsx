@@ -8,7 +8,7 @@ import { RiCheckDoubleLine, RiEyeLine } from "react-icons/ri";
 const PendingBids = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [viewAll, setViewAll] = useState(false);
-  const [showActionMenu, setShowActionMenu] = useState<number | null>(null);
+  const [showActionMenu, setShowActionMenu] = useState<number | null>(null); // Explicitly set the type
 
   const products = [
     { name: "Nike Flow 2020 ISPA ISE", description: "High-performance sports shoe", sellingPrice: 1000, bids: 10, highestBid: 1200, image: "/nike.jpg" },
@@ -71,7 +71,7 @@ const PendingBids = () => {
               <span className="relative">
                 <FiMoreHorizontal
                   className="text-orange-500 cursor-pointer"
-                  onClick={() => setShowActionMenu(showActionMenu === index ? null : index)}
+                  onClick={() => setShowActionMenu(showActionMenu === index ? null : index)} // Toggle between index and null
                 />
                 {showActionMenu === index && (
                   <div className="absolute top-0 left-0 bg-white p-4 z-40 shadow-md rounded-md">
@@ -147,4 +147,3 @@ const PendingBids = () => {
 };
 
 export default PendingBids;
-
