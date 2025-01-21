@@ -16,6 +16,7 @@ const PendingBids = () => {
     { name: "Puma RS-X3", description: "Stylish sports shoe", sellingPrice: 1300, bids: 15, highestBid: 1250, image: "/converse.jpg" },
     // More products...
   ];
+
   const recentActivity = [
     { name: "Nike Flow 2020 ISPA ISE", price: 405.51, time: "10:23 PM", image: "/nike.jpg" },
     { name: "Adidas Ultra Boost 2021", price: 1200.75, time: "9:15 AM", image: "/nike.jpg" },
@@ -30,6 +31,7 @@ const PendingBids = () => {
     <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-8 px-4 sm:px-6 md:px-8 xl:px- mt-20">
       {/* Left Section: Pending Bids */}
       <div className="lg:w-3/4 border border-gray-200 rounded-md p-4 sm:p-6">
+        {/* Header */}
         <div className="flex flex-wrap justify-between items-center mb-4 gap-4">
           <h6 className="text-base font-semibold text-gray-800">Pending Bids ({products.length})</h6>
           <div className="relative w-full sm:w-48">
@@ -129,7 +131,7 @@ const PendingBids = () => {
                 />
                 <div className="flex flex-col">
                   <span className="text-sm font-semibold text-gray-800">{activity.name}</span>
-                  <p className="text-xs text-gray-600">{activity.type || "New Sell"}</p>
+                  <p className="text-xs text-gray-600">New Sell</p>
                 </div>
               </div>
               <div className="text-right">
@@ -145,3 +147,4 @@ const PendingBids = () => {
 };
 
 export default PendingBids;
+
